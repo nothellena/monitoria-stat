@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Iniciando no R
 
 ```{r}
-url <- "Downloads/TabelaLivro.csv"
+url <- "../../TabelaLivro.csv"
 ```
 
 A util read.csv importa arquivos em fomato csv. header especifica se a primeira linha do arquivo expressa o nome das variáveis e sep é usado para definir qual caractere separa os valores no dataset. No caso do dataset milsa, os valores são separados pelo símbolo de ponto e vírgula. 
