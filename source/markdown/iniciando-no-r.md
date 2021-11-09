@@ -43,11 +43,15 @@ civil.tb <- table(milsa$Est.civil)
 
 # Plotando um gráfico de barras
 
-col: vetor com as cores das barras main, xlab, ylab: título do gŕafico e
-os rótulos dos eixos x e y, respectivamente ylim: vetor com os limites
-do eixo y cex.names, cex.axis, cex.labels: tamanhos do texto nos nomes
-das categorias, eixos e rótulos, respectivamente bty: define se/como
-será desenhado contorno do gráfico
+col: vetor com as cores das barras
+
+main, xlab, ylab: título do gŕafico e os rótulos dos eixos x e y, respectivamente 
+
+ylim: vetor com os limites do eixo y 
+
+cex.names, cex.axis, cex.labels: tamanhos do texto nos nomes das categorias, eixos e rótulos, respectivamente 
+
+bty: define se/como será desenhado contorno do gráfico
 
 ``` r
 barplot(civil.tb, cex.names=1.5, col=c("green", 
@@ -614,7 +618,7 @@ cor(milsa$Anos, milsa$Salario, method = "kendall") # Usa coeficiente de kendall
     ## [1] 0.2211641
 
 ``` r
-cor(milsa$Anos, milsa$Salario, method = "spearman") # Usa coeficiente de kendall
+cor(milsa$Anos, milsa$Salario, method = "spearman") # Usa coeficiente de spearman
 ```
 
     ## [1] 0.2993303
