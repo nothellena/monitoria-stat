@@ -1,6 +1,6 @@
 ---
 title: "Conceitos Iniciais em R"
-output: html_document
+output: rmarkdown::github_document
 ---
 
 ```{r setup, include=FALSE}
