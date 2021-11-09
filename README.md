@@ -1,6 +1,6 @@
 # **Monitoria P&E 2021.1**
 
-Material que disponibilizo para a disciplina de Probabilidade e Estatística do curso de Ciência da Computação na Universidade Federal de Alagoas.
+Material complementar disponibilizado para a disciplina de Probabilidade e Estatística do curso de Ciência da Computação na Universidade Federal de Alagoas.
 
 ## Links úteis
 
