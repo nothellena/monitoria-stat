@@ -34,7 +34,7 @@ str(milsa)
     ##  $ Regiao     : chr  "interior" "capital" "capital" "outra" ...
 
 Podemos selecionar colunas aplicando `objeto$nome_da_colunas`. Abaixo
-selecionamos a coluna `Est.civil` e aplicamos a função table para
+selecionamos a coluna `Est.civil` e aplicamos a função `table()` para
 construir uma tabela de frequências absolutas com seus valores.
 
 ``` r
