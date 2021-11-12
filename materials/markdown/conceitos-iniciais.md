@@ -638,18 +638,18 @@ cor(milsa$Anos, milsa$Salario, method = "spearman") # Usa coeficiente de Spearma
 
 ## Médias
 
+``` r
 # Média aritmética
 
-``` r
 valores <- c (10, 15, 20, 25)
 mean(valores)
 ```
 
     ## [1] 17.5
 
+``` r
 # Média poderada
 
-``` r
 MedPonderada <- function(x,w)
 { sum(x * w) / sum(w)}
 
@@ -671,9 +671,10 @@ weighted.mean(val, pesos)
 
     ## [1] 7
 
-# Funcão para calcular médias aritmetica, geometrica e harmonica
 
 ``` r
+# Funcão para calcular médias aritmetica, geometrica e harmonica
+
 medias3 <- function(x)
 { n <- length(x)
   ma <- mean(x)
