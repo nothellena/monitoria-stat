@@ -4,11 +4,11 @@ Conceitos Iniciais em R
 # Iniciando no R
 
 ``` r
-url <- "../../TabelaLivro.csv"
+url <- "../../data/TabelaLivro.csv"
 ```
 
-A util read.csv importa arquivos em fomato csv. header especifica se a
-primeira linha do arquivo expressa o nome das variáveis e sep é usado
+A util `read.csv()` importa arquivos em fomato csv. `header` especifica se a
+primeira linha do arquivo expressa o nome das variáveis e `sep` é usado
 para definir qual caractere separa os valores no dataset. No caso do
 dataset milsa, os valores são separados pelo símbolo de ponto e vírgula.
 
@@ -17,7 +17,7 @@ milsa <- read.csv(url, header = TRUE, sep = ";")
 ```
 
 Podemos observar um resumo da estrutura de qualquer objeto com a util
-str()
+`str()`.
 
 ``` r
 str(milsa)
@@ -33,8 +33,8 @@ str(milsa)
     ##  $ Meses      : int  3 10 5 10 7 0 0 4 10 6 ...
     ##  $ Regiao     : chr  "interior" "capital" "capital" "outra" ...
 
-Podemos selecionar colunas aplicando objeto$nome_da_colunas. Abaixo
-selecionamos a coluna Est.civil e aplicamos a função table para
+Podemos selecionar colunas aplicando `objeto$nome_da_colunas`. Abaixo
+selecionamos a coluna `Est.civil` e aplicamos a função table para
 construir uma tabela de frequências absolutas com seus valores.
 
 ``` r
@@ -43,15 +43,18 @@ civil.tb <- table(milsa$Est.civil)
 
 # Plotando um gráfico de barras
 
-col: vetor com as cores das barras
+`col`: vetor com as cores das barras.
 
-main, xlab, ylab: título do gŕafico e os rótulos dos eixos x e y, respectivamente 
+`main, xlab, ylab`: título do gŕafico e
+os rótulos dos eixos x e y, respectivamente. 
 
-ylim: vetor com os limites do eixo y 
+`ylim`: vetor com os limites do eixo y.
 
-cex.names, cex.axis, cex.labels: tamanhos do texto nos nomes das categorias, eixos e rótulos, respectivamente 
+`cex.names, cex.axis, cex.labels`: tamanhos do texto nos nomes
+das categorias, eixos e rótulos, respectivamente.
 
-bty: define se/como será desenhado contorno do gráfico
+`bty`: define se/como
+será desenhado contorno do gráfico.
 
 ``` r
 barplot(civil.tb, cex.names=1.5, col=c("green", 
@@ -61,12 +64,12 @@ barplot(civil.tb, cex.names=1.5, col=c("green",
         cex.lab=1.25,bty="n", ylim=c(0,25))
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 # Plotando um gráfico de pizza
 
 A seguir, calculamos a porcentagem, com duas casas decimais, de cada uma
-das classes da variável Est.civil, usando a função round. A função paste
+das classes da variável `Est.civil`, usando a função `round()`. A função paste
 é usada para concatenar o nome de cada classe com suas respectivas
 proporções.
 
@@ -90,7 +93,7 @@ legend("topright", pch=15, col=c("green","blue"),
        cex=1.1, bty="n")
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 # Variavel Qualitativa Ordinal
 
@@ -98,7 +101,12 @@ legend("topright", pch=15, col=c("green","blue"),
 
 ``` r
 inst.tb <- table(milsa$Inst)
+inst.tb
 ```
+
+    ## 
+    ## ensino fundamental       ensino medio           superior 
+    ##                 12                 18                  6 
 
 ## Frequência relativa
 
@@ -112,7 +120,7 @@ prop.table(inst.tb)
 
 ## Gráfico de Barras com barras ordenadas
 
-A função sort ordena os dados
+A função `sort()` ordena os dados.
 
 ``` r
 # Ordem crescente
@@ -125,7 +133,7 @@ barplot(sort(inst.tb,decreasing = FALSE),
         cex.lab=1.25,bty="n", ylim=c(0,20))
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 ``` r
 # Ordem decrescente
@@ -138,9 +146,9 @@ barplot(sort(inst.tb,decreasing = TRUE),
         cex.lab=1.25,bty="n", ylim=c(0,20))
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
-#Trabalhando com variaǘeis quantitativas discretas
+# Trabalhando com variaǘeis quantitativas discretas
 
 ``` r
 ## Frequência absoluta
@@ -154,7 +162,7 @@ plot(filhos.tb, col =  "green", type = "h",
      ylab= "Quantidade de Filhos ") 
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ``` r
 ## Frequência relativa
@@ -168,7 +176,7 @@ plot(filhos.tbra, type = "S",col = "red",
      lwd = 5 )
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->
 
 ``` r
 ## Frequência absoluta e relativa acumulada
@@ -194,7 +202,7 @@ filhosTabResul
 
 ## Moda
 
-Which.max retorna o rótulo mais frequente numa variável.
+`Which.max()` retorna o rótulo mais frequente numa variável.
 
 ``` r
 names(filhos.tb)[which.max(filhos.tb)]
@@ -354,7 +362,7 @@ lines(c(min(h$breaks), h$mids, max(h$breaks)),
        c(0,h$counts, 0), type = "l")
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 ``` r
 ## Mediana
@@ -435,13 +443,13 @@ summary(milsa$Salario)
 boxplot(milsa$Salario)
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 
 ``` r
 boxplot(milsa$Salario,  col = "orange", main="Boxplot - Salário")
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-28-2.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-28-2.png)<!-- -->
 
 # Variáveis qualitativa vs qualitativa (Estado Civil vs Instrução)
 
@@ -522,11 +530,11 @@ barplot(civ.ins.tb, beside= TRUE, legend= TRUE)
 barplot(t(prop.table(civ.ins.tb)), beside= TRUE, legend= TRUE)
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
 
 # Variáveis qualitativas vs quantitativas (Instrução x Salário)
 
-## Quartis de salario
+## Quartis de salário
 
 ``` r
 quantile(milsa$Salario)
@@ -554,19 +562,22 @@ inst.sal.tb
 ## Gráfico de barras
 
 ``` r
-barplot(inst.sal.tb, col=c("yellow","red","orange"), main= "Sal?rio x Instrução",
-        xlab = "Quantiles", ylab = "Frequência  Instrução",
+barplot(inst.sal.tb, 
+        col=c("yellow","red",  "orange"), 
+        main= "Sal?rio x Instrução",
+        xlab = "Quantiles",
+        ylab = "Frequência  Instrução",
         beside = TRUE, legend = TRUE)
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
 
 ``` r
 ## Boxplot
 boxplot(Salario ~ Instrucao, data = milsa, col=c("yellow", "red", "orange"))  
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
 
 # Variáveis quantitativas vs quantitativas (Salario x Idade)
 
@@ -595,13 +606,13 @@ Anos.sal.tb
 plot(x = milsa$Anos, y = milsa$Salario)
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-36-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-36-1.png)<!-- -->
 
 ``` r
 plot(Salario ~ Anos, data = milsa)
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-36-2.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-36-2.png)<!-- -->
 
 # Correlação - verificar associação entre variaveis quantitativas
 
@@ -612,13 +623,209 @@ cor(milsa$Anos, milsa$Salario)
     ## [1] 0.3623982
 
 ``` r
-cor(milsa$Anos, milsa$Salario, method = "kendall") # Usa coeficiente de kendall
+cor(milsa$Anos, milsa$Salario, method = "kendall") # Usa coeficiente de Kendall
 ```
 
     ## [1] 0.2211641
 
 ``` r
-cor(milsa$Anos, milsa$Salario, method = "spearman") # Usa coeficiente de spearman
+cor(milsa$Anos, milsa$Salario, method = "spearman") # Usa coeficiente de Spearman
 ```
 
     ## [1] 0.2993303
+
+# Medidas de posição, medidas de dispersão, separatrizes e assimetria
+
+## Médias
+
+# Média aritmética
+
+``` r
+valores <- c (10, 15, 20, 25)
+mean(valores)
+```
+
+    ## [1] 17.5
+
+# Média poderada
+
+``` r
+MedPonderada <- function(x,w)
+{ sum(x * w) / sum(w)}
+
+# Ler valores e definir pesos
+# (Input = 8, 9, 8, 5)
+
+val <- scan()
+pesos <- c (1, 2, 3, 4)
+
+MedPonderada(val , pesos)
+```
+
+    ## [1] 7
+
+``` r
+# Outra maneira de calcular
+weighted.mean(val, pesos)
+```
+
+    ## [1] 7
+
+# Funcão para calcular médias aritmetica, geometrica e harmonica
+
+``` r
+medias3 <- function(x)
+{ n <- length(x)
+  ma <- mean(x)
+  mg <- (prod(x)) ^ (1/n)
+  mh <- (1/n * sum(1/x)) ^ (-1)
+
+  cat ( "média aritmética = ", ma,
+        "média geométrica = ", mg,
+        "média harmônica  = ", mh)
+}
+
+# Input 7, 6, 9
+x<- scan ()
+
+medias3(x)
+```
+
+    ## média aritmética =  7.333333 
+    média geométrica =  7.230427
+    média harmônica =  7.132075
+
+## Quartis, Quintis, Decis e Percentis
+
+``` r
+valores <- c (10, 15, 20, 25)
+
+quantile(valores)
+```
+
+    ##    0%   25%   50%   75%  100% 
+    ## 10.00 13.75 17.50 21.25 25.00
+
+``` r
+quantile(valores, c( 0.10, 0.35, 0.50, 0.75, 0.90))
+```
+
+    ##   10%   35%   50%   75%   90% 
+    ## 11.50 15.25 17.50 21.25 23.50
+
+## Medidas de dispersão
+
+``` r
+xy<-c(16, 38, 18, 20, 20, 18, 22, 34, 7 ,28, 31, 19)
+
+# Amplitude
+range(xy)
+```
+
+    ## [1]  7 38
+
+``` r
+# Intervalo
+max(xy) - min(xy)
+```
+
+    ## [1] 31
+
+``` r
+# Variância
+var (xy)
+```
+
+    ## [1] 74.81061
+
+``` r
+# Desvio padrão
+sd (xy)
+```
+
+    ## [1] 8.649312
+
+``` r
+# Coeficiente de Variação
+sd(xy)/mean (xy) * 100
+```
+
+    ## [1] 38.29954
+
+``` r
+# Médias
+medias3(xy)
+```
+
+    ## média aritmética =  22.58333 média geométrica =  20.86404 média marmonica  =  18.80128
+
+## Exemplo com dados lidos de um arquivo.csv
+
+``` r
+url <- "../../data/IMCvalores.csv"
+
+IMC <- read.csv(url, header = TRUE, sep = ";", dec = ",")
+
+str (IMC)
+```
+
+    ## 'data.frame':    30 obs. of  1 variable:
+    ##  $ IMCplan: num  15.7 17.7 18.4 18.5 21.3 ...
+
+``` r
+boxplot(IMC, col = "red")
+```
+
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-43-1.png)<!-- -->
+
+``` r
+boxplot(IMC, col = "orange", varwidth = TRUE, notch = TRUE)
+```
+
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-43-2.png)<!-- -->
+
+``` r
+mean(IMC$IMCplan)  
+```
+
+    ## [1] 25.09811
+
+``` r
+median(IMC$IMCplan)
+```
+
+    ## [1] 25.0282
+
+``` r
+var(IMC$IMCplan)
+```
+
+    ## [1] 17.71152
+
+``` r
+sd(IMC$IMCplan)
+```
+
+    ## [1] 4.208506
+
+``` r
+quantile(IMC$IMCplan)
+```
+
+    ##       0%      25%      50%      75%     100% 
+    ## 15.68070 23.16743 25.02820 28.50798 33.46220
+
+``` r
+quantile(IMC$IMCplan, c( 0.10, 0.35, 0.50, 0.75, 0.90))
+```
+
+    ##      10%      35%      50%      75%      90% 
+    ## 18.49627 23.60246 25.02820 28.50798 29.51026
+
+``` r
+medias3(quantile(IMC$IMCplan))
+```
+
+    ## média aritmética =  25.1693
+    média geométrica =  24.41399
+    média marmonica  =  23.60116
