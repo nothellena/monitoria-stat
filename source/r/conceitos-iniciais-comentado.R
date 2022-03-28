@@ -1,5 +1,5 @@
 
-url <- "TabelaLivro.csv"
+url <- "../../data/TabelaLivro.csv"
 
 # A util read.csv importa arquivos em fomato csv.
 # header especifica se a primeira linha do arquivo expressa o nome das variáveis
@@ -48,7 +48,7 @@ pie(civil.tb,labels=labs,col=c("green", "blue"),
        main="Proporção entre casados e solteiros",
        cex=1.1)
 
-#Plotando legenda no canto superior direito (topright)
+# Plotando legenda no canto superior direito (topright)
 
 legend("topright", pch=15, col=c("green","blue"), 
        legend=c("Casados", "Solteiros"),
@@ -301,4 +301,112 @@ plot(Salario ~ Anos, data = milsa)
 cor(milsa$Anos, milsa$Salario)
 cor(milsa$Anos, milsa$Salario, method = "kendall") # Usa coeficiente de kendall
 cor(milsa$Anos, milsa$Salario, method = "spearman") # Usa coeficiente de kendall
-       
+
+# Medidas de posi��o, medidas de dispers�o, separatrizes e assimetria 
+
+## Médias
+
+# M�dia aritm�tica
+
+
+valores <- c (10, 15, 20, 25)
+mean(valores)
+
+
+# M�dia poderada
+
+
+MedPonderada <- function(x,w)
+{ sum(x * w) / sum(w)}
+
+# Ler valores e definir pesos
+
+val <- scan()
+pesos <- c (1, 2, 3, 4)
+
+MedPonderada(val , pesos)
+
+# Outra maneira de calcular
+weighted.mean(val, pesos)
+
+
+# Func�o para calcular m�dias aritmetica, geometrica e harmonica
+
+
+medias3 <- function(x)
+{ n <- length(x)
+  ma <- mean(x)
+  mg <- (prod(x)) ^ (1/n)
+  mh <- (1/n * sum(1/x)) ^ (-1)
+
+  cat ( "m�dia aritm�tica = ", ma,
+        "m�dia geom�trica = ", mg,
+        "m�dia marmonica  = ", mh)
+}
+
+x<- scan ()
+
+medias3(x)
+
+
+## Quartis, quintis, decis e percentis
+
+
+valores <- c (10, 15, 20, 25)
+
+quantile(valores)
+
+quantile(valores, c( 0.10, 0.35, 0.50, 0.75, 0.90))
+
+
+## Medidas de dispers�o
+
+
+xy<-c(16, 38, 18, 20, 20, 18, 22, 34, 7 ,28, 31, 19)
+
+# Amplitude
+range(xy)
+
+# Intervalo
+max(xy) - min(xy)
+
+# Variância
+var (xy)
+
+# Desvio padrão
+sd (xy)
+
+# Coeficiente de Varia��o
+sd(xy)/mean (xy) * 100
+
+# Médias
+medias3(xy)
+
+
+## Exemplo com dados lidos de um arquivo.csv
+
+
+url <- "../../data/IMCvalores.csv"
+
+IMC <- read.csv(url, header = TRUE, sep = ";", dec = ",")
+
+str (IMC)
+
+boxplot(IMC, col = "red")
+
+boxplot(IMC, col = "orange", varwidth = TRUE, notch = TRUE)
+
+mean(IMC$IMCplan)  
+
+median(IMC$IMCplan)
+
+var(IMC$IMCplan)
+
+sd(IMC$IMCplan)
+
+quantile(IMC$IMCplan)
+
+quantile(IMC$IMCplan, c( 0.10, 0.35, 0.50, 0.75, 0.90))
+
+medias3(quantile(IMC$IMCplan))
+

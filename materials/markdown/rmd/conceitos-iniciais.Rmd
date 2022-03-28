@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Iniciando no R
 
 ```{r}
-url <- "../../TabelaLivro.csv"
+url <- "../../data/TabelaLivro.csv"
 ```
 
 A util read.csv importa arquivos em fomato csv. header especifica se a primeira linha do arquivo expressa o nome das variáveis e sep é usado para definir qual caractere separa os valores no dataset. No caso do dataset milsa, os valores são separados pelo símbolo de ponto e vírgula. 
@@ -21,6 +21,7 @@ milsa <- read.csv(url, header = TRUE, sep = ";")
 ```
 
 Podemos observar um resumo da estrutura de qualquer objeto com a util str()
+
 ```{r}
 str(milsa)
 ```
@@ -373,4 +374,114 @@ plot(Salario ~ Anos, data = milsa)
 cor(milsa$Anos, milsa$Salario)
 cor(milsa$Anos, milsa$Salario, method = "kendall") # Usa coeficiente de kendall
 cor(milsa$Anos, milsa$Salario, method = "spearman") # Usa coeficiente de kendall
+```
+
+# Medidas de posi��o, medidas de dispers�o, separatrizes e assimetria 
+
+## Médias
+
+# M�dia aritm�tica
+
+```{r}
+valores <- c (10, 15, 20, 25)
+mean(valores)
+```
+
+# M�dia poderada
+
+```{r}
+MedPonderada <- function(x,w)
+{ sum(x * w) / sum(w)}
+
+# Ler valores e definir pesos
+# (Input = 8, 9, 8, 5)
+
+val <- c(8,9,8,5)
+pesos <- c (1, 2, 3, 4)
+
+MedPonderada(val , pesos)
+
+# Outra maneira de calcular
+weighted.mean(val, pesos)
+```
+
+# Func�o para calcular m�dias aritmetica, geometrica e harmonica
+
+```{r}
+medias3 <- function(x)
+{ n <- length(x)
+  ma <- mean(x)
+  mg <- (prod(x)) ^ (1/n)
+  mh <- (1/n * sum(1/x)) ^ (-1)
+
+  cat ( "m�dia aritm�tica = ", ma,
+        "m�dia goem�trica = ", mg,
+        "m�dia marmonica  = ", mh)
+}
+
+x<- scan ()
+
+medias3(x)
+```
+
+## Quartis, Quintis, Decis e Percentis
+
+```{r}
+valores <- c (10, 15, 20, 25)
+
+quantile(valores)
+
+quantile(valores, c( 0.10, 0.35, 0.50, 0.75, 0.90))
+```
+
+## Medidas de dispers�o
+
+```{r}
+xy<-c(16, 38, 18, 20, 20, 18, 22, 34, 7 ,28, 31, 19)
+
+# Amplitude
+range(xy)
+
+# Intervalo
+max(xy) - min(xy)
+
+# Variância
+var (xy)
+
+# Desvio padrão
+sd (xy)
+
+# Coeficiente de Varia��o
+sd(xy)/mean (xy) * 100
+
+# Médias
+medias3(xy)
+```
+
+## Exemplo com dados lidos de um arquivo.csv
+
+```{r}
+url <- "../../data/IMCvalores.csv"
+
+IMC <- read.csv(url, header = TRUE, sep = ";", dec = ",")
+
+str (IMC)
+
+boxplot(IMC, col = "red")
+
+boxplot(IMC, col = "orange", varwidth = TRUE, notch = TRUE)
+
+mean(IMC$IMCplan)  
+
+median(IMC$IMCplan)
+
+var(IMC$IMCplan)
+
+sd(IMC$IMCplan)
+
+quantile(IMC$IMCplan)
+
+quantile(IMC$IMCplan, c( 0.10, 0.35, 0.50, 0.75, 0.90))
+
+medias3(quantile(IMC$IMCplan))
 ```
