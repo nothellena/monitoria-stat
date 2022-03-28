@@ -1,4 +1,4 @@
-Trabalhando com datasets
+Conceitos Iniciais em Estatística com R
 ================
 
 ## Importando um arquivo
@@ -61,7 +61,7 @@ barplot(civil.tb, cex.names=1.5, col=c("green",
         cex.lab=1.25,bty="n", ylim=c(0,25))
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ## Plotando um gráfico de pizza
 
@@ -90,7 +90,7 @@ legend("topright", pch=15, col=c("green","blue"),
        cex=1.1, bty="n")
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ## Variavel Qualitativa Ordinal
 
@@ -125,7 +125,7 @@ barplot(sort(inst.tb,decreasing = FALSE),
         cex.lab=1.25,bty="n", ylim=c(0,20))
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 ``` r
 # Ordem decrescente
@@ -138,7 +138,7 @@ barplot(sort(inst.tb,decreasing = TRUE),
         cex.lab=1.25,bty="n", ylim=c(0,20))
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ## Trabalhando com variáveis quantitativas discretas
 
@@ -154,7 +154,7 @@ plot(filhos.tb, col =  "green", type = "h",
      ylab= "Quantidade de Filhos ") 
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ``` r
 ## Frequência relativa
@@ -168,7 +168,7 @@ plot(filhos.tbra, type = "S",col = "red",
      lwd = 5 )
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->
 
 ``` r
 ## Frequência absoluta e relativa acumulada
@@ -354,7 +354,7 @@ lines(c(min(h$breaks), h$mids, max(h$breaks)),
        c(0,h$counts, 0), type = "l")
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 ``` r
 ## Mediana
@@ -435,13 +435,13 @@ summary(milsa$Salario)
 boxplot(milsa$Salario)
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
 
 ``` r
 boxplot(milsa$Salario,  col = "orange", main="Boxplot - Salário")
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-28-2.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-28-2.png)<!-- -->
 
 ## Variáveis qualitativa vs qualitativa (Estado Civil vs Instrução)
 
@@ -522,7 +522,7 @@ barplot(civ.ins.tb, beside= TRUE, legend= TRUE)
 barplot(t(prop.table(civ.ins.tb)), beside= TRUE, legend= TRUE)
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
 
 ## Variáveis qualitativas vs quantitativas (Instrução x Salário)
 
@@ -559,14 +559,14 @@ barplot(inst.sal.tb, col=c("yellow","red","orange"), main= "Sal?rio x Instruçã
         beside = TRUE, legend = TRUE)
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
 
 ``` r
 ## Boxplot
 boxplot(Salario ~ Instrucao, data = milsa, col=c("yellow", "red", "orange"))  
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
 
 ## Variáveis quantitativas vs quantitativas (Salario x Idade)
 
@@ -595,13 +595,13 @@ Anos.sal.tb
 plot(x = milsa$Anos, y = milsa$Salario)
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-36-1.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-36-1.png)<!-- -->
 
 ``` r
 plot(Salario ~ Anos, data = milsa)
 ```
 
-![](iniciando-no-r_files/figure-gfm/unnamed-chunk-36-2.png)<!-- -->
+![](conceitos-iniciais_files/figure-gfm/unnamed-chunk-36-2.png)<!-- -->
 
 ## Correlação - verificar associação entre variaveis quantitativas
 
