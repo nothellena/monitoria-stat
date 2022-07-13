@@ -1,0 +1,130 @@
+---
+title: "Reavaliação AB2 2021.1"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Observação:** o número de matrícula considerado para resolver as questões abaixo foi **22021234**.
+
+## Instalando e importando os pacotes necessários
+```{r}
+if(!require(dplyr)) install.packages("dplyr")
+library(dplyr)    
+if(!require(car)) install.packages("car")   
+library(car)                                
+if(!require(psych)) install.packages("psych") 
+library(psych)                                
+if(!require(rstatix)) install.packages("rstatix") 
+library(rstatix)                                
+if(!require(DescTools)) install.packages("DescTools") 
+library(DescTools)
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("mixOmics")
+if(!require(RVAideMemoire)) install.packages("RVAideMemoire") 
+library(RVAideMemoire)    
+if(!require(readxl)) install.packages("readxl") 
+library(readxl)    
+```
+
+## Questão 3
+
+**Enunciado:**
+
+Deseja-se testar se existem diferenças na quantidade de animais em três locais distintos.  
+
+Calcular:
+
+    a\) Verificar e interpretar a homogeneidade das variâncias dos locais;
+    
+    b\) Verificar e interpretar a normalidade dos dados dos locais;
+    
+    c\) Elaborar e interpretar o quadro de Análise de Variância (ANOVA);
+    
+    d\) Verificar as divergências entre as médias dos locais e interpretar os resultados a 5% e a 1% de significância.
+
+
+```{r}
+# Importando os dados
+dados_q3 <- read_excel("data/reav_q3.xlsx", col_types = c("numeric", "guess"))
+summary(dados_q3)
+```
+
+```{r}
+# Análisando a normalidade de cada grupo 
+byf.shapiro(Quantidade ~ Local, data=dados_q3)
+```
+```{r}
+# Médias por grupo
+aggregate(dados_q3$Quantidade, list(dados_q3$Local), FUN=mean) 
+```
+```{r}
+# Análisando a homogeneidade entre os grupos com o teste de Lavene
+leveneTest(Quantidade ~ Local, data=dados_q3, center=mean)
+```
+```{r}
+# Performando a ANOVA e exibindo a quadro de análise de variabilidade
+anova = aov(Quantidade ~ Local, data=dados_q3)
+summary(anova)
+```
+
+Como o p-valor é menor que 0.05, rejeita-se H0.
+
+```{r}
+# Teste de Tukey para identificar entre quais grupos há diferença
+PostHocTest(anova, method = "hsd")
+```
+
+Diferem significativamente entre si, tanto a 5% de significância quanto à 1% de significância, dado que todos os p-valores são inferiores à 0.01. Quantidade L3 > Quantidade L1 > Quantidade L2.
+
+## Questão 4
+
+**Enunciado**: Considere os dados: 
+
+    • Altura de planta (X)   8, 4, 6, 5, 12, (xx/2)
+    • Número de folhas (Y) 16, 9, 13, 9, 20, (xx+2)/2
+    
+Calcular: 
+
+a\) O coeficiente de Correlação e o coeficiente de determinação e explicar os resultados.
+
+b\) Calcular a equação da reta e calcular o valor predito para X = 10.
+
+c\) Elaborar um teste de hipótese para validar o coeficiente de determinação obtido acima e justifique sua resposta.  
+
+```{r}
+# Importando os dados
+dados_q4 <- read_excel("data/reav_q4.xlsx", col_types = c("numeric", "numeric"))
+summary(dados_q4) 
+```
+
+```{r}
+# Performando regressão
+reg = lm(Y~X, data = dados_q4)
+summary(reg) 
+```
+
+a\) Coeficiente de determinação(R²) =  0.7359 ou 73,59%, isto é, o modelo linear explica 73,59% da variância dos dados analisados.
+
+```{r}
+# Coeficiente de correlação
+sqrt(0.7359)
+```
+O coeficiente de correlação de Pearson é aproximadamente 0.86, indicando que existe uma correlação positiva forte entre a altura das plantas e a quantidade de folhas.  Isto é, quanto maior a altura da planta, maior a quantidade de folhas.
+
+b\) `y = 0.7763x + 7.4757`
+
+```{r}
+  # resultado para x = 10
+
+  0.7763 * 10 + 7.4757
+```
+
+c\) 
+```{r}
+cor.test(dados_q4$X, dados_q4$Y)
+```
+Como o p-valor é menor que 0.05, o resultado indica que existe correlação significativa entre as variáveis.
